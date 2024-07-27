@@ -1,0 +1,23 @@
+Parameters:
+1. bbox: The corners of the area to report on, expressed in the EPSG:4326 projection. These are two longitude-latitude pairs describing the corners of the bounding box. The first pair is for the lower-left corner and the second pair for the upper-right corner. All values should be separated by a comma. The maximum area of a bounding box is 10,000 km 2.
+
+This parameter is mutually exclusive with the ids parameter.
+This parameter is available only for GET requests.
+
+Values: minLon,minLat,maxLon,maxLat
+
+2. CategoryFilter: 
+Allowed values:
+0: Unknown
+1: Accident
+2: Fog
+3: DangerousConditions
+4: Rain
+5: Ice
+6: Jam
+7: LaneClosed
+8: RoadClosed
+9: RoadWorks
+10: Wind
+11: Flooding
+14: BrokenDownVehicle
