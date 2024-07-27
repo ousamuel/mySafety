@@ -31,10 +31,56 @@ body {
     text-wrap: balance;
   }
 }
-
-.sub-container{
+h1 {
+  font-size: 2em;
+}
+h3 {
+  font-size: 20px;
+}
+main {
+  min-width: 100vw;
+  min-height: 100vh;
+  padding: 4vh 0 4vh 0;
+}
+.offender-input {
+  text-align: center;
+  width: 80%;
+  max-width: 345px;
+  min-width: 200px;
+  border: 1px solid;
+  margin: 2px;
+  padding: 5px 0px 5px 0px;
+}
+.submit-input {
+  color: white;
+  background-color: rgb(255, 70, 70);
+  padding: 5px 10px 5px 10px;
+  border-radius: 10px;
+}
+.submit-input:hover {
+  cursor: pointer;
+  background-color: rgb(254, 101, 101);
+}
+.middle-colored-bar {
+  background-color: skyblue;
+  /* border-top: px solid; */
+  box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.2); /* Adjust values as needed */
+}
+.sub-container {
+  padding: 0px 5vw 0px 5vw;
   justify-content: flex;
-  width: 450px;
-  min-height: 600px;
+  /* width: 450px; */
+  /* min-height: 0px; */
   justify-content: center;
+}
+
+.legends-box {
+  color: white;
+  padding: 10px 15px 10px 15px;
+  margin: 5px;
+  /* width: 50%; */
+  max-width: 350px;
+  border: solid 3px orange;
+  border-radius: 15px;
+  background-color: black;
 }

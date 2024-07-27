@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import getOffenders from "../fetches/getOffenders";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
-import { Pagination, Button } from "@nextui-org/react";
+import { Pagination, Image, Progress } from "@nextui-org/react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
 interface OffenderData {
   address: string;
   age: string;
@@ -31,69 +33,218 @@ interface OffenderData {
   registrationDate: string | null;
   riskLevel: string;
   sex: string;
-  // sources: Source[];
   state: string;
   updatedAt: string;
   uuid: string;
   weight: string;
   zipcode: string;
 }
+
+interface VagueSearchFormValues {
+  zipcode: string;
+  city: string;
+  state: string;
+}
+
 const RegisteredOffenders: React.FC = () => {
   const tempOffenderSearch = {
-    zipcode: 11365,
+    zipcode: "11365",
+    city: "Flushing",
+    state: "New York",
   };
-  const [offenders, setOffenders] = useState<any>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 5;
-  useEffect(() => {
-    const fetchOffenders = async () => {
-      try {
-        const res = await getOffenders(tempOffenderSearch);
-        console.log(res?.data.offenders);
-        setOffenders(res?.data.offenders);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching offenders:", error);
-      }
-    };
 
-    fetchOffenders();
-  }, []);
-  const totalPages = Math.ceil(offenders.length / itemsPerPage);
+  const [offenders, setOffenders] = useState<OffenderData[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [currentSearch, setCurrentSearch] = useState<string[]>([]);
+  const itemsPerPage = 5;
+
+  const fetchOffenders = async (input: VagueSearchFormValues) => {
+    try {
+      const res = await getOffenders(input);
+      console.log(res?.data.offenders);
+      setOffenders(res?.data.offenders || []);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching offenders:", error);
+      setLoading(false);
+    }
+  };
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<VagueSearchFormValues>();
+  const validateForm = (data: VagueSearchFormValues) => {
+    if (data.zipcode || data.city || data.state) {
+      return true;
+    }
+    return false;
+  };
+  const onSubmit: SubmitHandler<VagueSearchFormValues> = async (data) => {
+    if (!validateForm(data)) {
+      return;
+    }
+    setOffenders([]);
+    setLoading(true);
+    setCurrentSearch([data.zipcode, data.city, data.state]);
+    await fetchOffenders(data);
+    setCurrentPage(1);
+    reset();
+  };
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(offenders.length / itemsPerPage));
+  }, [offenders]);
 
   const currentItems = offenders.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-
-  if (loading) {
-    return <div>loading</div>;
-  }
-  // test
+  const [badZip, setBadZip] = useState<boolean>(false);
   return (
     <main>
-      <h1>Header</h1>
-      <div>form data headers</div>
-      <div className="sub-container mx-auto">
-        <div className="flex justify-between ">
+      <h1 className="font-bold text-center">
+        Find Registered Offenders Around You
+      </h1>
+      <h4 className="text-gray-500 text-center text-sm">
+        Visit the official record to find missing information
+      </h4>
+      <div className="middle-colored-bar py-2 mt-4 flex flex-wrap justify-evenly items-center">
+        <section id="risk-levels" className="legends-box mt-3">
+          <h3 className="text-center underline">Risk Levels</h3>
+          <div className="flex">
+            <ul className="whitespace-nowrap mr-1 font-bold">
+              <li className="text-green-500">Level 1: </li>
+              <li className="text-orange-500">Level 2: </li>
+              <li className="text-red-500">Level 3: </li>
+            </ul>
+            <ul className="text-white">
+              <li>Low risk of repeat offense </li>
+              <li>Moderate risk of repeat offense</li>
+              <li>High risk of repeat offense and a threat to public safety</li>
+            </ul>
+          </div>
+        </section>
+        <form
+          className="flex flex-col w-1/2 text-center items-center"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <input
+            className="offender-input"
+            {...register("zipcode", { minLength: 5, maxLength: 5 })}
+            placeholder="Zip Code (5 digits)"
+          />
+          <input
+            className="offender-input"
+            {...register("city")}
+            placeholder="City"
+          />
+          <input
+            className="offender-input"
+            {...register("state")}
+            placeholder="State"
+          />
+          <input className="submit-input mt" type="submit" value="Search" />
+        </form>
+      </div>
+
+      <div className="sub-container mx-auto mt-5">
+        <div className="flex justify-between pl-1 pr-3">
           <Pagination
             total={totalPages}
             color="secondary"
             page={currentPage}
             onChange={setCurrentPage}
           />
+          {currentSearch.length > 0 ? (
+            <span>SEARCHING BY: {currentSearch.join(" ")}</span>
+          ) : null}
           <p className="text-small text-default-500 text-center">
-            Selected Page: {currentPage}
+            {totalPages ? `${currentPage} / ${totalPages}` : null}
           </p>
         </div>
-        <Accordion>
-          {currentItems.map((o: OffenderData) => (
-            <AccordionItem key={o.uuid} title={o.lastName}>
-              <h1>{o.name}</h1>
-              <div>{o.crime}</div>
-            </AccordionItem>
-          ))}
+        {!loading && offenders.length == 0 ? (
+          <div className="text-center">
+            <h3 className="my-4">
+              Please enter a Zip Code, City, and/or State to start your search.
+            </h3>
+            <h4>
+              For the most accurate results, please use{" "}
+              <strong>zip code</strong>
+            </h4>
+          </div>
+        ) : null}
+
+        {loading ? (
+          <Progress
+            size="sm"
+            isIndeterminate
+            aria-label="Loading..."
+            className="max-w-md"
+          />
+        ) : null}
+        <Accordion selectionMode="multiple">
+          {currentItems.map((o: OffenderData) => {
+            let crimeDesc = o.crime.split("*");
+            return (
+              <AccordionItem
+                className="text-md"
+                key={o.uuid}
+                title={o.name}
+                subtitle={`Risk Level: ${o.riskLevel}`}
+              >
+                <section className="flex justify-between">
+                  <a
+                    className="hover:bg-gray-400 underline text-blue-500 text-wrap"
+                    href={o.offenderUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Official Record
+                  </a>
+
+                  <p className="text-gray-500 text-sm">
+                    Last Updated: {o.updatedAt.slice(0, 10)}
+                  </p>
+                </section>
+
+                <div className="flex text-sm justify-between">
+                  <section id="offender-info" className="w-1/3">
+                    <p>
+                      {o.race} {o.sex}
+                      {o.ethnicity === "Hispanic" ? `, Hispanic` : null}
+                    </p>
+                    <p>Eye color: {o.eyeColor}</p>
+                    <p>Height: {o.height}</p>
+                    <p>Weight: {o.weight} lbs</p>
+                    {o.marks ? <p>Marks: {o.marks} </p> : null}
+                  </section>
+                  <section id="crime-info" className="w-3/5">
+                    {o.crime ? (
+                      <ul>
+                        <li id="crime-date">{crimeDesc[8]}</li>
+                        <li
+                          id="conviction-date"
+                          className="border-b border-gray-400"
+                        >
+                          {crimeDesc[9]}
+                        </li>
+                        <li id="description">{crimeDesc[7]}</li>
+                        <li id="victim" className="border-b border-gray-400">
+                          {crimeDesc[10]}
+                        </li>
+                        <li id="sentence">{crimeDesc[18]}</li>
+                      </ul>
+                    ) : null}
+                  </section>
+                </div>
+              </AccordionItem>
+            );
+          })}
         </Accordion>
       </div>
     </main>
