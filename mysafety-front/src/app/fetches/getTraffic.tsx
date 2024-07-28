@@ -1,6 +1,8 @@
 import axios from "axios";
 
 type SearchBy = {
+    bottom_left: string,
+    top_right: string
 };
 export default function getTraffic(data:SearchBy) {
     const options = {
