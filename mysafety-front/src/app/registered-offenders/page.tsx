@@ -4,9 +4,8 @@ import getOffenders from "../fetches/getOffenders";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { Pagination, Progress } from "@nextui-org/react";
 import Image from "next/image";
-
 import { useForm, SubmitHandler } from "react-hook-form";
-
+// import { getGroqChatCompletion } from "../fetches/getGroqAI";
 interface OffenderData {
   address: string;
   age: string;
@@ -49,11 +48,139 @@ interface VagueSearchFormValues {
 }
 
 const RegisteredOffenders: React.FC = () => {
+  
   const tempOffenderSearch = {
     zipcode: "11365",
     city: "Flushing",
     state: "New York",
   };
+  const tempData = [
+    {
+      address: "204-09 45TH ROAD",
+      age: "",
+      city: "BAYSIDE",
+      content: "",
+      crime: `* Title: PL 
+* Section: 130.35 
+* Subsection:  
+* Class: C 
+* Category: F 
+* Counts: 1 
+* Description: Attempted Rape-1st Degree 
+
+* Date of Crime: Nov. 22, 2005 
+* Date Convicted: Oct. 23, 2006 
+* Victim Sex/Age: Female, 12 Years
+* Arresting Agency: NYCPD Sex Offender Unit 
+* Offense Descriptions: Actual, MoreThanOnce Sexual Intercourse
+* Relationship to Victim: Non-Stranger
+* Weapon Used: No weapon used
+* Force Used: None Reported
+* Computer Used: No 
+* Pornography Involved: No 
+* Sentence: Term: 7 Year(s) State Prison`,
+      dob: null,
+      ethnicity: "Unknown",
+      eyeColor: "Brown",
+      firstName: "Brian",
+      firstName_nicknames: [],
+      hairColor: "Black",
+      height: "5' 11\"",
+      isAbsconder: null,
+      isPredator: true,
+      jurisdiction: null,
+      lastName: "Lymus",
+      lat: 40.7572067,
+      lng: -73.7786969,
+      marks: "None Reported",
+      middleName: "",
+      name: "BRIAN LYMUS",
+      offenderImageUrl:
+        "https://www.criminaljustice.ny.gov/SomsSUBDirectory/offenderDetailsServletOther?imageid=37860",
+      offenderUrl:
+        "http://www.criminaljustice.ny.gov/SomsSUBDirectory/offenderDetails.jsp?offenderid=37860",
+      race: "Black",
+      registrationDate: null,
+      riskLevel: "3",
+      sex: "Male",
+      sources: [
+        {
+          // Add source data here
+        },
+        {
+          // Add source data here
+        },
+      ],
+      state: "New York",
+      updatedAt: "2024-07-18T07:12:17.689Z",
+      uuid: "308575f1-1939-5908-becd-8f9988e532b1",
+      weight: "173",
+      zipcode: "11361",
+    },
+    {
+      address: "204-09 45TH ROAD",
+      age: "",
+      city: "BAYSIDE",
+      content: "",
+      crime: `* Title: PL 
+* Section: 130.35 
+* Subsection:  
+* Class: C 
+* Category: F 
+* Counts: 1 
+* Description: Attempted Rape-1st Degree 
+
+* Date of Crime: Nov. 22, 2005 
+* Date Convicted: Oct. 23, 2006 
+* Victim Sex/Age: Female, 12 Years
+* Arresting Agency: NYCPD Sex Offender Unit 
+* Offense Descriptions: Actual, MoreThanOnce Sexual Intercourse
+* Relationship to Victim: Non-Stranger
+* Weapon Used: No weapon used
+* Force Used: None Reported
+* Computer Used: No 
+* Pornography Involved: No 
+* Sentence: Term: 7 Year(s) State Prison`,
+      dob: null,
+      ethnicity: "Unknown",
+      eyeColor: "Brown",
+      firstName: "Brian",
+      firstName_nicknames: [],
+      hairColor: "Black",
+      height: "5' 11\"",
+      isAbsconder: null,
+      isPredator: true,
+      jurisdiction: null,
+      lastName: "Lymus",
+      lat: 40.7572067,
+      lng: -73.7786969,
+      marks: "None Reported",
+      middleName: "",
+      name: "BRIAN LYMUS",
+      offenderImageUrl:
+        "https://www.criminaljustice.ny.gov/SomsSUBDirectory/offenderDetailsServletOther?imageid=37860",
+      offenderUrl:
+        "http://www.criminaljustice.ny.gov/SomsSUBDirectory/offenderDetails.jsp?offenderid=37860",
+      race: "Black",
+      registrationDate: null,
+      riskLevel: "3",
+      sex: "Male",
+      sources: [
+        {
+          // Add source data here
+        },
+        {
+          // Add source data here
+        },
+      ],
+      state: "New York",
+      updatedAt: "2024-07-18T07:12:17.689Z",
+      uuid: "308575f1-1439-5908-becd-8f9988e532b1",
+      weight: "173",
+      zipcode: "11361",
+    },
+  ];
+  console.log(tempData);
 
   const [newRender, setNewRender] = useState<boolean>(true);
   const [offenders, setOffenders] = useState<OffenderData[]>([]);
@@ -66,7 +193,6 @@ const RegisteredOffenders: React.FC = () => {
   const fetchOffenders = async (input: VagueSearchFormValues) => {
     try {
       const res = await getOffenders(input);
-      // console.log(res?.data.offenders);
       setOffenders(res?.data.offenders || []);
       setLoading(false);
     } catch (error) {
@@ -210,12 +336,11 @@ const RegisteredOffenders: React.FC = () => {
           />
         ) : null}
         <Accordion selectionMode="multiple">
-          {currentItems.map((o: OffenderData) => {
+          {tempData.map((o: OffenderData) => {
             let crimeDesc = o.crime.split("*");
-            let image = o.offenderImageUrl;
             return (
               <AccordionItem
-                className="text-md"
+                className={"text-md"}
                 key={o.uuid}
                 title={o.name}
                 subtitle={`Risk Level: ${o.riskLevel}`}
@@ -252,13 +377,7 @@ const RegisteredOffenders: React.FC = () => {
                       <p>Weight (lbs): {o.weight}</p>
                       {o.marks ? <p>Marks: {o.marks} </p> : null}
                     </section>
-                    {/* <Image
-                      src={image}
-                      alt={o.name + 'img'}
-                      width={50}
-                      height={50}
-
-                    /> */}
+                    {/* <img src={o.offenderImageUrl} alt={o.name + "img"} /> */}
                   </div>
 
                   <section id="crime-info" className="w-3/5">

@@ -48,6 +48,12 @@ main {
   margin: 2px;
   padding: 5px 0px 5px 0px;
 }
+.searching-for {
+  color: white;
+  background-color: #3182ce;
+  padding: 5px 10px 5px 10px;
+  /* border-radius: 10px; */
+}
 .submit-input {
   color: white;
   width: 80%;
@@ -68,7 +74,7 @@ main {
 }
 .sub-container {
   padding: 0px 5vw 0px 5vw;
-  justify-content: flex;
+  max-width: 1600px;
   /* width: 450px; */
   /* min-height: 0px; */
   justify-content: center;
