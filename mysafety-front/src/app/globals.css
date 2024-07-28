@@ -3,19 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 0, 0, 0; /* Black text */
+  --background-start-rgb: 198, 210, 230; /* Light blue background start */
+  --background-end-rgb: 245, 245, 245; /* Light blue background end */
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.asd{
+  color: rgb(255, 255, 255)
 }
-
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

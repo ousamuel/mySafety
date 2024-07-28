@@ -106,11 +106,11 @@ const RegisteredOffenders: React.FC = () => {
   );
   const [badZip, setBadZip] = useState<boolean>(false);
   return (
-    <main>
-      <h1 className="font-bold text-center">
+    <main >
+      <h1 className="px-4 font-bold text-center">
         Find Registered Offenders Around You
       </h1>
-      <h4 className="text-gray-500 text-center text-sm">
+      <h4 className="px-2 text-gray-500 text-center text-sm">
         Visit the official record to find missing information
       </h4>
       <div className="middle-colored-bar py-2 mt-4 flex flex-wrap justify-evenly items-center">
@@ -156,7 +156,7 @@ const RegisteredOffenders: React.FC = () => {
         <div className="flex justify-between pl-1 pr-3">
           <Pagination
             total={totalPages}
-            color="secondary"
+            color="primary"
             page={currentPage}
             onChange={setCurrentPage}
           />
