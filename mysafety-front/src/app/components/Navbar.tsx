@@ -1,6 +1,9 @@
+"use client";
 import Image from "next/image";
-
+import { useSession, signOut, signIn } from "next-auth/react";
+import React from "react";
 const Navbar: React.FC = () => {
+  const session = useSession();
   return (
     <nav className="bg-gray-100">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -19,14 +22,18 @@ const Navbar: React.FC = () => {
             />
           </a>
         </section>
-
         <div>
-          <a
-            href="/registered-offenders"
-            className="text-gray-800 hover:text-blue-500 ml-4"
-          >
-            Registered Offenders
-          </a>
+          {" "}
+          {session?.data?.user?.name ? (
+            <div className="text-gray-800 font-bold ml-4">
+              <div className="hover:">Welcome {session.data.user.name}</div>
+              <button onClick={() => signOut()}>Sign Out</button>
+            </div>
+          ) : (
+            <div>
+              <button onClick={() => signIn("google")}>LOGIN</button>
+            </div>
+          )}
         </div>
       </div>
     </nav>
