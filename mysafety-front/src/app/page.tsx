@@ -3,10 +3,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import session from "../app/layout";
-// import TrafficForm from "./components/TrafficForm";
-// import RegisteredOffenders from "./components/RegisteredOffenders";
 import getOffenders from "./fetches/getOffenders";
 import { Divider } from "@nextui-org/react";
+
 
 export default async function Home() {
   // const [trafficData, setTrafficData] = useState<any[]>([]);
