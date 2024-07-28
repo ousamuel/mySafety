@@ -30,12 +30,9 @@ export default function getOffenders(data: SearchBy) {
   };
 
   try {
-    console.log(process.env.NEXT_PUBLIC_RAPIDAPI_KEY)
     const response = axios.request(options);
-    // console.log("test");
     return response;
   } catch (error) {
     console.log("error fetching offenders:", error);
-    // res.status(500).json({ error: "Failed to fetch data" });
   }
 }
