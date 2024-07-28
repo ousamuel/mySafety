@@ -5,7 +5,6 @@ import React from "react";
 
 const Navbar: React.FC = () => {
   const { data: session } = useSession();
-
   return (
     <nav className="bg-gray-100">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -28,7 +27,9 @@ const Navbar: React.FC = () => {
         <div className="flex items-center">
           {session?.user ? (
             <div className="flex items-center ml-4">
-              <span className="mr-2 text-gray-800">Welcome, {session.user.name}</span>
+              <span className="mr-2 text-gray-800">
+                Welcome, {session.user.name}
+              </span>
               <button
                 onClick={() => signOut()}
                 className="bg-red-500 text-white px-3 py-1 rounded"
@@ -38,7 +39,12 @@ const Navbar: React.FC = () => {
             </div>
           ) : (
             <button
-              onClick={() => signIn("google", { callbackUrl: "https://my-safety-lyart.vercel.app/registered-offenders" })}
+              onClick={() =>
+                signIn("google", {
+                  callbackUrl:
+                    "https://my-safety-lyart.vercel.app/registered-offenders",
+                })
+              }
               className="bg-blue-500 text-white px-3 py-1 rounded ml-4"
             >
               Login

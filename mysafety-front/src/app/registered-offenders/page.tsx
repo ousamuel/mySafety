@@ -44,8 +44,8 @@ interface OffenderData {
 
 interface VagueSearchFormValues {
   zipcode: string;
-  city: string;
-  state: string;
+  // city: string;
+  // state: string;
 }
 
 const RegisteredOffenders: React.FC = () => {
@@ -145,7 +145,7 @@ const RegisteredOffenders: React.FC = () => {
             {...register("zipcode", { minLength: 5, maxLength: 5 })}
             placeholder="Zip Code (5 digits)"
           />
-          <input
+          {/* <input
             className="offender-input"
             {...register("city")}
             placeholder="City"
@@ -154,7 +154,7 @@ const RegisteredOffenders: React.FC = () => {
             className="offender-input"
             {...register("state")}
             placeholder="State"
-          />
+          /> */}
           <input
             className="submit-input mt-[5px]"
             type="submit"
@@ -181,14 +181,9 @@ const RegisteredOffenders: React.FC = () => {
         {}
         {newRender ? (
           <div className="flex flex-col text-center items-center">
-            <h3 className="">
-              Please enter a Zip Code, City, and/or State to start your search
+            <h3 className="my-2">
+              Please enter a <strong>Zip Code</strong> to start your search
             </h3>
-
-            <h4 className="my-4">
-              For the most accurate results, please use{" "}
-              <strong>zip code</strong>
-            </h4>
             <Image
               src="svgs/search.svg"
               alt="search-svg"

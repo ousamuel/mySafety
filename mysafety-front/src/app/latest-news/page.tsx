@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 import getLatestNews from "../fetches/getNews";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-
+import Image from "next/image";
 interface ArticleData {
   link: string;
   photo_url: string;
@@ -87,7 +87,7 @@ const LatestNews: React.FC = () => {
         Latest News from <strong className="underline">Anywhere</strong>
       </h1>
       <h4 className="px-2 text-gray-500 text-center text-sm">
-        Search for any news in the past year
+        Search for any news in the US up to the past year
       </h4>
       <div className="middle-colored-bar py-2 mt-4 flex flex-wrap justify-evenly items-center">
         <form
@@ -142,6 +142,27 @@ const LatestNews: React.FC = () => {
           </p>
         </div>
       </div>
+      {newRender ? (
+          <div className="flex flex-col text-center items-center">
+            <h3 className="my-2">
+              Enter  a news topic in a specific timeframe
+            </h3>
+            <Image
+              src="svgs/search.svg"
+              alt="search-svg"
+              width={100}
+              height={100}
+            />
+          </div>
+        ) : !loading && latestNews.length == 0 ? (
+          <div className="flex flex-col items-center text-center">
+            <h3 className="my-4">
+              No news found for this topic{" "}
+            </h3>
+            <Image src="svgs/news.svg" alt="news-svg" width={80} height={100} />
+            <h4>Feel free to search again</h4>
+          </div>
+        ) : null}
       <div className="gap-2 grid grid-cols-12 grid-rows-2 px-8">
         {currentItems.map((article, i) => (
           <Card key={i} className="col-span-12 lg:col-span-4 rounded-[5px] ">
