@@ -5,6 +5,7 @@ import axios from "axios";
 import session from "../app/layout";
 import getOffenders from "./fetches/getOffenders";
 import { Divider } from "@nextui-org/react";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 
 export default async function Home() {
