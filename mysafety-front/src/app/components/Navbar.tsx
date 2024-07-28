@@ -1,6 +1,6 @@
 "use client";
-import Image from "next/image";
 import { useSession, signOut, signIn } from "next-auth/react";
+import Image from "next/image";
 import React from "react";
 
 const Navbar: React.FC = () => {
@@ -26,12 +26,6 @@ const Navbar: React.FC = () => {
         </section>
 
         <div className="flex items-center">
-          <a
-            href="/registered-offenders"
-            className="text-gray-800 hover:text-blue-500 ml-4"
-          >
-            Registered Offenders
-          </a>
           {session?.user ? (
             <div className="flex items-center ml-4">
               <span className="mr-2 text-gray-800">Welcome, {session.user.name}</span>
@@ -44,7 +38,7 @@ const Navbar: React.FC = () => {
             </div>
           ) : (
             <button
-              onClick={() => signIn("google")}
+              onClick={() => signIn("google", { callbackUrl: "https://my-safety-lyart.vercel.app/registered-offenders" })}
               className="bg-blue-500 text-white px-3 py-1 rounded ml-4"
             >
               Login
