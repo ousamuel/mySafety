@@ -121,7 +121,7 @@ const RegisteredOffenders: React.FC = () => {
         Visit the official record to find complete information
       </h4>
       <div className="middle-colored-bar py-2 mt-4 flex flex-wrap justify-evenly items-center">
-        <section id="risk-levels" className="legends-box mt-3">
+        <section id="risk-levels" className="legends-box ">
           <h3 className="text-center underline">Risk Levels</h3>
           <div className="flex">
             <ul className="whitespace-nowrap mr-1 font-bold">
@@ -129,7 +129,7 @@ const RegisteredOffenders: React.FC = () => {
               <li className="text-orange-500">Level 2: </li>
               <li className="text-red-500">Level 3: </li>
             </ul>
-            <ul className="text-white">
+            <ul className="">
               <li>Low risk of repeat offense </li>
               <li>Moderate risk of repeat offense</li>
               <li>High risk of repeat offense and a threat to public safety</li>
@@ -181,15 +181,15 @@ const RegisteredOffenders: React.FC = () => {
         {}
         {newRender ? (
           <div className="flex flex-col text-center items-center">
-            <h3 className="my-2">
+            <h3 className="my-2 text-gray-500">
               Please enter a <strong>Zip Code</strong> to start your search
             </h3>
-            <Image
+            {/* <Image
               src="svgs/search.svg"
               alt="search-svg"
               width={100}
               height={100}
-            />
+            /> */}
           </div>
         ) : !loading && offenders.length == 0 ? (
           <div className="flex flex-col items-center text-center">

@@ -50,13 +50,16 @@ main {
 }
 .submit-input {
   color: white;
-  background-color: rgb(255, 70, 70);
+  width: 80%;
+  max-width: 345px;
+  min-width: 200px;
+  background-color: #3182ce;
   padding: 5px 10px 5px 10px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 .submit-input:hover {
   cursor: pointer;
-  background-color: rgb(254, 101, 101);
+  background-color: #0f5597;
 }
 .middle-colored-bar {
   background-color: skyblue;
@@ -72,14 +75,15 @@ main {
 }
 
 .legends-box {
-  color: white;
+  color: black;
   padding: 10px 15px 10px 15px;
-  margin: 5px;
+  margin: 10px 0 10px 0;
+
   /* width: 50%; */
   max-width: 350px;
-  border: solid 3px orange;
-  border-radius: 15px;
-  background-color: black;
+  /* border: solid 3px orange; */
+  border-radius: 2px;
+  background-color: rgb(245, 245, 245);
 }
 
 .developer {

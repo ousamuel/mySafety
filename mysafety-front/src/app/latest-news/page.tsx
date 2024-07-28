@@ -97,7 +97,7 @@ const LatestNews: React.FC = () => {
           <input
             className="offender-input"
             {...register("query", { required: true })}
-            placeholder="Search"
+            placeholder="Enter Your Search"
           />
           {errors.query && <span>This field is required</span>}
 
@@ -144,15 +144,15 @@ const LatestNews: React.FC = () => {
       </div>
       {newRender ? (
           <div className="flex flex-col text-center items-center">
-            <h3 className="my-2">
+            <h3 className="my-2 text-gray-500">
               Enter  a news topic in a specific timeframe
             </h3>
-            <Image
+            {/* <Image
               src="svgs/search.svg"
               alt="search-svg"
               width={100}
               height={100}
-            />
+            /> */}
           </div>
         ) : !loading && latestNews.length == 0 ? (
           <div className="flex flex-col items-center text-center">
