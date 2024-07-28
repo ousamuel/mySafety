@@ -126,7 +126,7 @@ const LatestNews: React.FC = () => {
         </form>
       </div>
 
-      <div className="sub-container mx-auto mt-5">
+      <div className="sub-container mt-5">
         <div className="flex justify-between pl-1 pr-3 mb-3">
           <Pagination
             total={totalPages}
