@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
           {session?.user ? (
             <div className="flex items-center ml-4">
               <span className="mr-2 text-gray-800">
-                Welcome, {session.user.name} {session.user.id}
+                Welcome, {session.user.name}
               </span>
               <button
                 onClick={() => signOut()}
