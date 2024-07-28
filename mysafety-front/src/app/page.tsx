@@ -63,6 +63,20 @@ export default function Home() {
         <Divider className="my-2" />
 
         <section id="crime-data" className="py-14 text-right">
+          <h2 className="text-2xl font-bold text-gray-800">Latest News</h2>
+          <p className="mt-2 text-gray-600">
+            News from anywhere in the US, instantly.
+          </p>
+          <a
+            href="/latest-news"
+            className="mt-4 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          >
+            Search
+          </a>
+        </section>
+        <Divider className="my-2" />
+
+        <section id="crime-data" className="py-14">
           <h2 className="text-2xl font-bold text-gray-800">Traffic Data</h2>
           <p className="mt-2 text-gray-600">
             Find real-time data on traffic incidents around you.

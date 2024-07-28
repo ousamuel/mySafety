@@ -144,7 +144,7 @@ const LatestNews: React.FC = () => {
       </div>
       <div className="gap-2 grid grid-cols-12 grid-rows-2 px-8">
         {currentItems.map((article, i) => (
-          <Card key={i} className="col-span-12 lg:col-span-4 rounded-[5px]">
+          <Card key={i} className="col-span-12 lg:col-span-4 rounded-[5px] ">
             <CardHeader className="absolute z-10 top-1 flex-col !items-start">
               <a
                 href={article.source_url}
@@ -153,7 +153,7 @@ const LatestNews: React.FC = () => {
               >
                 {article.source_url}
               </a>
-              <h4 className="px-2 text-white font-medium text-large">
+              <h4 className="px-2 text-white font-medium text-large stroked">
                 {article.title}
               </h4>
             </CardHeader>
