@@ -21,9 +21,9 @@ export default function Home() {
 
   return (
     <>
-      <Head>
+      <head>
         <GoogleAnalytics />
-      </Head>
+      </head>
       <div className="bg-gradient-to-b from-sky-200 to-gray-200 text-gray-800 min-h-screen">
         {/* Navigation Bar */}
 
