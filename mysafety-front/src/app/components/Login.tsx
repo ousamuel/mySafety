@@ -1,7 +1,7 @@
 "use client";
 import { useSession, signOut, signIn } from "next-auth/react";
 import React from "react";
-export default function login() {
+export default function Login() {
   const session = useSession();
   return (
     <div>
