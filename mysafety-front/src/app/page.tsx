@@ -9,7 +9,6 @@ import session from "../app/layout";
 import getOffenders from "./fetches/getOffenders";
 import { Divider } from "@nextui-org/react";
 import GoogleAnalytics from "./components/GoogleAnalytics";
-import Head from "next/head";
 import Google from "next-auth/providers/google";
 
 export default function Home() {
@@ -28,9 +27,9 @@ export default function Home() {
 
   return (
     <>
-      <Head>
+      <head>
         <GoogleAnalytics />
-      </Head>
+      </head>
       <div className="bg-gradient-to-b from-sky-200 to-gray-200 text-gray-800 min-h-screen">
         {/* Navigation Bar */}
 
