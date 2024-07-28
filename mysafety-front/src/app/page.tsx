@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -6,6 +6,7 @@ import getOffenders from "./fetches/getOffenders";
 import { Divider } from "@nextui-org/react";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import Head from "next/head";
+import FirebaseAnalytics from "./components/FirebaseAnalytics";
 
 export default async function Home() {
   return (
@@ -29,6 +30,7 @@ export default async function Home() {
               href="/Login"
               className="mt-8 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
             >
+              <FirebaseAnalytics />
               Get Started
             </a>
           </div>
