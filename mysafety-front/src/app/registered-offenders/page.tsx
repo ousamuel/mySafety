@@ -336,7 +336,8 @@ const RegisteredOffenders: React.FC = () => {
           />
         ) : null}
         <Accordion selectionMode="multiple">
-          {tempData.map((o: OffenderData) => {
+          {/* tempData instead of currentItems when in dev  */}
+          {currentItems.map((o: OffenderData) => {
             let crimeDesc = o.crime.split("*");
             return (
               <AccordionItem

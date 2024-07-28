@@ -256,7 +256,7 @@ const LatestNews: React.FC = () => {
       ) : null}
       <div className="gap-2 grid grid-cols-12 grid-rows-2 px-8 max-w-[1600px] m-auto">
         {/* tempData to avoid fetches */}
-        {tempData.map((article, i) => (
+        {currentItems.map((article, i) => (
           <Card
             key={i}
             // className="col-span-12 lg:col-span-4 rounded-[5px] hover:shadow-2xl hover:opacity-60 m-4 "
