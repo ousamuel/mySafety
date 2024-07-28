@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import getOffenders from "../fetches/getOffenders";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
-import { Pagination, Image, Progress } from "@nextui-org/react";
+import { Pagination, Progress } from "@nextui-org/react";
+import Image from "next/image";
+
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface OffenderData {
@@ -53,6 +55,7 @@ const RegisteredOffenders: React.FC = () => {
     state: "New York",
   };
 
+  const [newRender, setNewRender] = useState<boolean>(true);
   const [offenders, setOffenders] = useState<OffenderData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -88,6 +91,7 @@ const RegisteredOffenders: React.FC = () => {
     if (!validateForm(data)) {
       return;
     }
+    setNewRender(false);
     setOffenders([]);
     setLoading(true);
     setCurrentSearch([data.zipcode, data.city, data.state]);
@@ -95,6 +99,9 @@ const RegisteredOffenders: React.FC = () => {
     setCurrentPage(1);
     reset();
   };
+  useEffect(() => {
+    setNewRender(true);
+  }, []);
 
   useEffect(() => {
     setTotalPages(Math.ceil(offenders.length / itemsPerPage));
@@ -106,12 +113,12 @@ const RegisteredOffenders: React.FC = () => {
   );
   const [badZip, setBadZip] = useState<boolean>(false);
   return (
-    <main >
+    <main>
       <h1 className="px-4 font-bold text-center">
         Find Registered Offenders Around You
       </h1>
       <h4 className="px-2 text-gray-500 text-center text-sm">
-        Visit the official record to find missing information
+        Visit the official record to find complete information
       </h4>
       <div className="middle-colored-bar py-2 mt-4 flex flex-wrap justify-evenly items-center">
         <section id="risk-levels" className="legends-box mt-3">
@@ -148,7 +155,11 @@ const RegisteredOffenders: React.FC = () => {
             {...register("state")}
             placeholder="State"
           />
-          <input className="submit-input mt" type="submit" value="Search" />
+          <input
+            className="submit-input mt-[5px]"
+            type="submit"
+            value="Search"
+          />
         </form>
       </div>
 
@@ -167,15 +178,31 @@ const RegisteredOffenders: React.FC = () => {
             {totalPages ? `${currentPage} / ${totalPages}` : null}
           </p>
         </div>
-        {!loading && offenders.length == 0 ? (
-          <div className="text-center">
-            <h3 className="my-4">
-              Please enter a Zip Code, City, and/or State to start your search.
+        {}
+        {newRender ? (
+          <div className="flex flex-col text-center items-center">
+            <h3 className="">
+              Please enter a Zip Code, City, and/or State to start your search
             </h3>
-            <h4>
+
+            <h4 className="my-4">
               For the most accurate results, please use{" "}
               <strong>zip code</strong>
             </h4>
+            <Image
+              src="svgs/search.svg"
+              alt="search-svg"
+              width={100}
+              height={100}
+            />
+          </div>
+        ) : !loading && offenders.length == 0 ? (
+          <div className="flex flex-col items-center text-center">
+            <h3 className="my-4">
+              No registered offenders found in this area{" "}
+            </h3>
+            <Image src="svgs/yay.svg" alt="yay-svg" width={80} height={100} />
+            <h4>Feel free to search again</h4>
           </div>
         ) : null}
 
@@ -190,6 +217,7 @@ const RegisteredOffenders: React.FC = () => {
         <Accordion selectionMode="multiple">
           {currentItems.map((o: OffenderData) => {
             let crimeDesc = o.crime.split("*");
+            let image = o.offenderImageUrl;
             return (
               <AccordionItem
                 className="text-md"
@@ -213,20 +241,38 @@ const RegisteredOffenders: React.FC = () => {
                 </section>
 
                 <div className="flex text-sm justify-between">
-                  <section id="offender-info" className="w-1/3">
-                    <p>
-                      {o.race} {o.sex}
-                      {o.ethnicity === "Hispanic" ? `, Hispanic` : null}
-                    </p>
-                    <p>Eye color: {o.eyeColor}</p>
-                    <p>Height: {o.height}</p>
-                    <p>Weight: {o.weight} lbs</p>
-                    {o.marks ? <p>Marks: {o.marks} </p> : null}
-                  </section>
+                  <div className="w-1/3">
+                    <section id="offender-info" className="">
+                      <p>
+                        {o.age ? `${o.age} y/o ` : null}
+                        {o.race} {o.sex}
+                        {o.ethnicity === "Hispanic" ? `, Hispanic` : null}
+                      </p>
+                      <p>Address: {o.address}</p>
+                      <p>
+                        {o.city}, {o.state}
+                      </p>
+                      <p>Eye color: {o.eyeColor}</p>
+                      <p>Height (ft): {o.height}</p>
+                      <p>Weight (lbs): {o.weight}</p>
+                      {o.marks ? <p>Marks: {o.marks} </p> : null}
+                    </section>
+                    {/* <Image
+                      src={image}
+                      alt={o.name + 'img'}
+                      width={50}
+                      height={50}
+
+                    /> */}
+                  </div>
+
                   <section id="crime-info" className="w-3/5">
                     {o.crime ? (
                       <ul>
-                        <li id="crime-date">{crimeDesc[8]}</li>
+                        {crimeDesc.map((crime, i) => {
+                          return <li key={i}>{crime}</li>;
+                        })}
+                        {/* <li id="crime-date">{crimeDesc[8]}</li>
                         <li
                           id="conviction-date"
                           className="border-b border-gray-400"
@@ -237,7 +283,7 @@ const RegisteredOffenders: React.FC = () => {
                         <li id="victim" className="border-b border-gray-400">
                           {crimeDesc[10]}
                         </li>
-                        <li id="sentence">{crimeDesc[18]}</li>
+                        <li id="sentence">{crimeDesc[18]}</li> */}
                       </ul>
                     ) : null}
                   </section>
