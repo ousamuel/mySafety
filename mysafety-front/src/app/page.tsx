@@ -19,6 +19,8 @@ export default function Home() {
     }
   };
 
+export default async function Home() {
+
   return (
     <>
       <Head>
@@ -44,6 +46,25 @@ export default function Home() {
             </button>
           </div>
         </header>
+
+
+      <header className="bg-gray-200 py-20 px-8">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl font-bold text-gray-800 ">
+            Welcome to MySafety
+          </h1>
+          <p className="mt-4 text-gray-600">
+            Your resource for safety information and offender registration
+            details.
+          </p>
+          <a
+            href="/Login"
+            className="mt-8 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          >
+            Get Started
+          </a>
+        </div>
+      </header>
 
         {/* Main Content */}
         <main className="container mx-auto py-4 px-14">

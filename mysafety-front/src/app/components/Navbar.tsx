@@ -18,8 +18,8 @@ const Navbar: React.FC = () => {
             <Image
               src="/svgs/shield.svg"
               className="ml-1"
-              width={30}
-              height={30}
+              width={31}
+              height={31}
               alt="mysafety-logo"
             />
           </a>

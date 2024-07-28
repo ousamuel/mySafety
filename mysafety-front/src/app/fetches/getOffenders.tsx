@@ -24,12 +24,13 @@ export default function getOffenders(data: SearchBy) {
       // radius: data.radius,
     },
     headers: {
-      "x-rapidapi-key": process.env.NEXT_RAPIDAPI_KEY,
+      "x-rapidapi-key": process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
       "x-rapidapi-host": "sex-offenders.p.rapidapi.com",
     },
   };
 
   try {
+    console.log(process.env.NEXT_PUBLIC_RAPIDAPI_KEY)
     const response = axios.request(options);
     // console.log("test");
     return response;
