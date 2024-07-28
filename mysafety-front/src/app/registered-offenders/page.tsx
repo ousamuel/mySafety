@@ -66,11 +66,11 @@ const RegisteredOffenders: React.FC = () => {
   const fetchOffenders = async (input: VagueSearchFormValues) => {
     try {
       const res = await getOffenders(input);
-      console.log(res?.data.offenders);
+      // console.log(res?.data.offenders);
       setOffenders(res?.data.offenders || []);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching offenders:", error);
+      // console.error("Error fetching offenders:", error);
       setLoading(false);
     }
   };

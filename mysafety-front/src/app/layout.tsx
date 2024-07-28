@@ -4,7 +4,7 @@ import "./globals.css";
 import { authOptions } from "../../pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 import SessionProvider from "../SessionProvider";
-
+import Navbar from "./components/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,7 +21,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <SessionProvider session={session}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Navbar />
+        {children}
+        
+      </body>
       </SessionProvider>
     </html>
   );
