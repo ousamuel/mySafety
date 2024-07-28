@@ -54,7 +54,7 @@ export default function Home() {
         </header>
 
         {/* Main Content */}
-        <main className="container py-4 px-14">
+        <main className="container max-auto py-4 px-14">
           <section id="registered-offenders" className="py-14">
             <h2 className="text-2xl font-bold text-gray-800">
               Registered Offenders
