@@ -5,7 +5,6 @@ import React from "react";
 
 const Navbar: React.FC = () => {
   const { data: session } = useSession();
-
   return (
     <nav className="bg-gray-100">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">

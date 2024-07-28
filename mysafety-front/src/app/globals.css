@@ -7,8 +7,8 @@
   --background-start-rgb: 198, 210, 230; /* Light blue background start */
   --background-end-rgb: 245, 245, 245; /* Light blue background end */
 }
-.asd{
-  color: rgb(255, 255, 255)
+.asd {
+  color: rgb(255, 255, 255);
 }
 body {
   color: rgb(var(--foreground-rgb));
@@ -32,9 +32,12 @@ h3 {
   font-size: 20px;
 }
 main {
-  min-width: 100vw;
+  min-width: 100%;
   min-height: 100vh;
   padding: 2vh 0 4vh 0;
+}
+.stroked {
+  -webkit-text-stroke: 0.5px black;
 }
 .offender-input {
   text-align: center;
@@ -77,4 +80,14 @@ main {
   border: solid 3px orange;
   border-radius: 15px;
   background-color: black;
+}
+
+.developer {
+  white-space: nowrap;
+  padding: 4px 8px 4px 8px;
+  border-radius: 5px;
+}
+.developer:hover {
+  background-color: gray;
+  color: blue;
 }

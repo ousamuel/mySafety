@@ -7,7 +7,8 @@ import Image from "next/image";
 import AnalyticsComponent from "../components/FirebaseAnalytics";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-interface OffenderData {}
+interface OffenderData {
+}
 
 interface VagueSearchFormValues {
   zipcode: string;
@@ -15,7 +16,8 @@ interface VagueSearchFormValues {
   state: string;
 }
 
-const TrafficInfo: React.FC = () => {
+const TrafficInfo: React.FC = () =>{
+
   const [newRender, setNewRender] = useState<boolean>(true);
   const [alerts, setAlerts] = useState<OffenderData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -23,54 +25,54 @@ const TrafficInfo: React.FC = () => {
   const [totalPages, setTotalPages] = useState<number>(0);
   const [currentSearch, setCurrentSearch] = useState<string[]>([]);
   const itemsPerPage = 5;
-  //   const fetchOffenders = async (input: VagueSearchFormValues) => {
-  //     try {
-  //       const res = await getOffenders(input);
-  //       // console.log(res?.data.offenders);
-  //       setOffenders(res?.data.offenders || []);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       // console.error("Error fetching offenders:", error);
-  //       setLoading(false);
-  //     }
-  //   };
+//   const fetchOffenders = async (input: VagueSearchFormValues) => {
+//     try {
+//       const res = await getOffenders(input);
+//       // console.log(res?.data.offenders);
+//       setOffenders(res?.data.offenders || []);
+//       setLoading(false);
+//     } catch (error) {
+//       // console.error("Error fetching offenders:", error);
+//       setLoading(false);
+//     }
+//   };
 
-  //   const {
-  //     register,
-  //     handleSubmit,
-  //     reset,
-  //     formState: { errors },
-  //   } = useForm<VagueSearchFormValues>();
-  //   const validateForm = (data: VagueSearchFormValues) => {
-  //     if (data.zipcode || data.city || data.state) {
-  //       return true;
-  //     }
-  //     return false;
-  //   };
-  //   const onSubmit: SubmitHandler<VagueSearchFormValues> = async (data) => {
-  //     if (!validateForm(data)) {
-  //       return;
-  //     }
-  //     setNewRender(false);
-  //     setOffenders([]);
-  //     setLoading(true);
-  //     setCurrentSearch([data.zipcode, data.city, data.state]);
-  //     await fetchOffenders(data);
-  //     setCurrentPage(1);
-  //     reset();
-  //   };
-  //   useEffect(() => {
-  //     setNewRender(true);
-  //   }, []);
+//   const {
+//     register,
+//     handleSubmit,
+//     reset,
+//     formState: { errors },
+//   } = useForm<VagueSearchFormValues>();
+//   const validateForm = (data: VagueSearchFormValues) => {
+//     if (data.zipcode || data.city || data.state) {
+//       return true;
+//     }
+//     return false;
+//   };
+//   const onSubmit: SubmitHandler<VagueSearchFormValues> = async (data) => {
+//     if (!validateForm(data)) {
+//       return;
+//     }
+//     setNewRender(false);
+//     setOffenders([]);
+//     setLoading(true);
+//     setCurrentSearch([data.zipcode, data.city, data.state]);
+//     await fetchOffenders(data);
+//     setCurrentPage(1);
+//     reset();
+//   };
+//   useEffect(() => {
+//     setNewRender(true);
+//   }, []);
 
-  //   useEffect(() => {
-  //     setTotalPages(Math.ceil(offenders.length / itemsPerPage));
-  //   }, [offenders]);
+//   useEffect(() => {
+//     setTotalPages(Math.ceil(offenders.length / itemsPerPage));
+//   }, [offenders]);
 
-  //   const currentItems = offenders.slice(
-  //     (currentPage - 1) * itemsPerPage,
-  //     currentPage * itemsPerPage
-  //   );
+//   const currentItems = offenders.slice(
+//     (currentPage - 1) * itemsPerPage,
+//     currentPage * itemsPerPage
+//   );
   return (
     <main>
       <AnalyticsComponent />
@@ -138,9 +140,10 @@ const TrafficInfo: React.FC = () => {
             {totalPages ? `${currentPage} / ${totalPages}` : null}
           </p>
         </div>
+
       </div>
     </main>
   );
-};
+}
 
 export default TrafficInfo;
