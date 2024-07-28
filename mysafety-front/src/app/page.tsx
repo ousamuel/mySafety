@@ -2,18 +2,13 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import session from "../app/layout";
 import getOffenders from "./fetches/getOffenders";
 import { Divider } from "@nextui-org/react";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import Head from "next/head";
 
-export default function Home() {
-  // const [trafficData, setTrafficData] = useState<any[]>([]);
-  // const [offenderData, setOffenderData] = useState<any>(null);
 
-  // useEffect(() => {
-  // }, []);
+export default async function Home() {
 
   return (
     <>
@@ -23,24 +18,24 @@ export default function Home() {
       <div className="bg-gradient-to-b from-sky-200 to-gray-200 text-gray-800 min-h-screen">
         {/* Navigation Bar */}
 
-        {/* Hero Section */}
-        <header className="bg-gray-200 py-20 px-8">
-          <div className="container mx-auto text-center">
-            <h1 className="text-4xl font-bold text-gray-800 ">
-              Welcome to MySafety
-            </h1>
-            <p className="mt-4 text-gray-600">
-              Your resource for safety information and offender registration
-              details.
-            </p>
-            <a
-              href="/registered-offenders"
-              className="mt-8 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-            >
-              Get Started
-            </a>
-          </div>
-        </header>
+
+      <header className="bg-gray-200 py-20 px-8">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl font-bold text-gray-800 ">
+            Welcome to MySafety
+          </h1>
+          <p className="mt-4 text-gray-600">
+            Your resource for safety information and offender registration
+            details.
+          </p>
+          <a
+            href="/Login"
+            className="mt-8 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          >
+            Get Started
+          </a>
+        </div>
+      </header>
 
         {/* Main Content */}
         <main className="container mx-auto py-4 px-14">
