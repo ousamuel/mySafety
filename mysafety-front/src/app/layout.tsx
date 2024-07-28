@@ -21,10 +21,6 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
   return (
     <html lang="en">
-      <head>
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_MEASUREMENT_ID} />
-
-      </head>
         <SessionProvider session={session}>
         <body className={inter.className}>
           <Navbar />
