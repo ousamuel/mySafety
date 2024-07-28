@@ -98,7 +98,30 @@ export default function Home() {
           </section>
         </main>
 
-        <footer className="py-4">
+        <footer className="py-4 ">
+          <div className="flex justify-center text-blue-600">
+            <a
+              className="developer"
+              href="https://ousamuel.vercel.app/"
+              target="_blank"
+            >
+              Sam O.
+            </a>
+            <a
+              className="developer"
+              href="https://nextjs-portfolio-main-ivory.vercel.app/"
+              target="_blank"
+            >
+              Godwins T.
+            </a>
+            <a
+              className="developer"
+              href="https://portfolio2-mark-tocino.vercel.app/"
+              target="_blank"
+            >
+              Mark T.
+            </a>
+          </div>
           <div className="container mx-auto text-center text-gray-600">
             &copy; 2024 MySafety. All rights reserved.
           </div>
