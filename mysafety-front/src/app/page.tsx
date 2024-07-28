@@ -15,6 +15,10 @@ export default async function Home() {
   // }, []);
 
   return (
+    <>
+      <head>
+        <GoogleAnalytics />
+      </head>
     <div className="bg-gradient-to-b from-sky-200 to-gray-200 text-gray-800 min-h-screen">
       {/* Navigation Bar */}
 
@@ -76,5 +80,6 @@ export default async function Home() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
