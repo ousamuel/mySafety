@@ -15,7 +15,7 @@ export default function getTraffic(data:SearchBy) {
         max_jams: '20'
       },
       headers: {
-        'x-rapidapi-key': process.env.NEXT_RAPIDAPI_KEY,
+        'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
         'x-rapidapi-host': 'waze.p.rapidapi.com'
       }
     };
