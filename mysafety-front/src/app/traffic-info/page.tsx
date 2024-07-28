@@ -74,7 +74,7 @@ const TrafficInfo: React.FC = () => {
   return (
     <main>
       <h1 className="px-4 font-bold text-center">
-        Find Registered Offenders Around You
+        Traffic Alerts in Your Area
       </h1>
       <h4 className="px-2 text-gray-500 text-center text-sm">
         Visit the official record to find complete information
