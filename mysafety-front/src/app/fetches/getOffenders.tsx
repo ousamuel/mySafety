@@ -24,14 +24,15 @@ export default function getOffenders(data: SearchBy) {
       // radius: data.radius,
     },
     headers: {
-      "x-rapidapi-key": "24587ceb3bmsh5b8a71a30272f11p1d446fjsnc021a931cb39",
+      "x-rapidapi-key": process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
       "x-rapidapi-host": "sex-offenders.p.rapidapi.com",
     },
   };
 
   try {
+    console.log(process.env.NEXT_PUBLIC_RAPIDAPI_KEY)
     const response = axios.request(options);
-    console.log("test");
+    // console.log("test");
     return response;
   } catch (error) {
     console.log("error fetching offenders:", error);
