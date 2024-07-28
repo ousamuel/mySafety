@@ -180,7 +180,7 @@ const RegisteredOffenders: React.FC = () => {
       zipcode: "11361",
     },
   ];
-  console.log(tempData);
+  // console.log(tempData);
 
   const [newRender, setNewRender] = useState<boolean>(true);
   const [offenders, setOffenders] = useState<OffenderData[]>([]);

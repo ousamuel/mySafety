@@ -222,7 +222,7 @@ const LatestNews: React.FC = () => {
             page={currentPage}
             onChange={(page) => setCurrentPage(page)}
           />
-          {currentSearch.length == 0 && (
+          {currentSearch.length > 0 && (
             <span className="uppercase my-auto searching-for">
               SEARCHING FOR:{" "}
               <strong className="">
