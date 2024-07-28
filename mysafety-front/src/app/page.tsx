@@ -5,6 +5,7 @@ import axios from "axios";
 import session from "../app/layout";
 import getOffenders from "./fetches/getOffenders";
 import { Divider } from "@nextui-org/react";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 
 export default async function Home() {
@@ -15,6 +16,10 @@ export default async function Home() {
   // }, []);
 
   return (
+    <>
+      <head>
+        <GoogleAnalytics />
+      </head>
     <div className="bg-gradient-to-b from-sky-200 to-gray-200 text-gray-800 min-h-screen">
       {/* Navigation Bar */}
 
@@ -76,5 +81,6 @@ export default async function Home() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
