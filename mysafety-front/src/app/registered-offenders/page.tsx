@@ -82,7 +82,7 @@ const RegisteredOffenders: React.FC = () => {
     formState: { errors },
   } = useForm<VagueSearchFormValues>();
   const validateForm = (data: VagueSearchFormValues) => {
-    if (data.zipcode || data.city || data.state) {
+    if (data.zipcode) {
       return true;
     }
     return false;
@@ -94,7 +94,7 @@ const RegisteredOffenders: React.FC = () => {
     setNewRender(false);
     setOffenders([]);
     setLoading(true);
-    setCurrentSearch([data.zipcode, data.city, data.state]);
+    setCurrentSearch([data.zipcode]);
     await fetchOffenders(data);
     setCurrentPage(1);
     reset();
