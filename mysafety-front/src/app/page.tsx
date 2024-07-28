@@ -6,7 +6,7 @@ import getOffenders from "./fetches/getOffenders";
 import { Divider } from "@nextui-org/react";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import Head from "next/head";
-import FirebaseAnalytics from "./components/FirebaseAnalytics";
+import AnalyticsComponent from "./components/FirebaseAnalytics";
 
 export default async function Home() {
   return (
@@ -14,6 +14,7 @@ export default async function Home() {
       <Head>
         <GoogleAnalytics />
       </Head>
+      <AnalyticsComponent />
       <div className="bg-gradient-to-b from-sky-200 to-gray-200 text-gray-800 min-h-screen">
         {/* Navigation Bar */}
 
@@ -30,7 +31,6 @@ export default async function Home() {
               href="/Login"
               className="mt-8 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
             >
-              <FirebaseAnalytics />
               Get Started
             </a>
           </div>

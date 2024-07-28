@@ -4,7 +4,7 @@ import getOffenders from "../fetches/getOffenders";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { Pagination, Progress } from "@nextui-org/react";
 import Image from "next/image";
-
+import AnalyticsComponent from "../components/FirebaseAnalytics";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface OffenderData {
@@ -114,6 +114,7 @@ const RegisteredOffenders: React.FC = () => {
   const [badZip, setBadZip] = useState<boolean>(false);
   return (
     <main>
+      <AnalyticsComponent />
       <h1 className="px-4 font-bold text-center">
         Find Registered Offenders Around You
       </h1>

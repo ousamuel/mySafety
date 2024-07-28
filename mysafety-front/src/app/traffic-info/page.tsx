@@ -4,7 +4,7 @@ import getTraffic from "../fetches/getTraffic";
 import { Accordion, AccordionItem } from "@nextui-org/accordion";
 import { Pagination, Progress } from "@nextui-org/react";
 import Image from "next/image";
-
+import AnalyticsComponent from "../components/FirebaseAnalytics";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 interface OffenderData {}
@@ -73,6 +73,7 @@ const TrafficInfo: React.FC = () => {
   //   );
   return (
     <main>
+      <AnalyticsComponent />
       <h1 className="px-4 font-bold text-center">
         Find Registered Offenders Around You
       </h1>
